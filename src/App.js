@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Footer from './Components/Footer'
+import Header from './Components/Header'
+import Sidebar from './Components/Sidebar'
+import HomePage from './Pages/HomePage'
+import ListTaskPage from './Pages/ListTaskPage'
+import EditTaskPage from './Pages/EditTaskPage'
+import AddTaskPage from './Pages/AddTaskPage'
+import ViewTaskPage from './Pages/ViewTaskPage'
+import HistoryTaskPage from './Pages/HistoryTaskPage'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <div>
+        <Sidebar />
+        <div>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/tasklist" element={<ListTaskPage />} />
+            <Route path="/taskview/:taskid" element={<ViewTaskPage />} />
+            <Route path="/taskadd" element={<AddTaskPage />} />
+            <Route path="/taskedit" element={<EditTaskPage />} />
+            <Route path="/taskhistory" element={<HistoryTaskPage />} />
+          </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
