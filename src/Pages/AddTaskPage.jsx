@@ -12,9 +12,88 @@ const AddTaskPage = () => {
   const [status, setStatus] = useState('')
   const [comment, setComment] = useState('')
 
+  const [errors, setErrors] = useState({
+    Description: '',
+    Category: '',
+    Requested_By: '',
+    Status: '',
+    Comment: '',
+  })
+
+  const validateForm = () => {
+    let valid = true
+    const newErrors = {
+      Description: '',
+      Category: '',
+      Requested_By: '',
+      Status: '',
+      Comment: '',
+    }
+
+    if (!description.trim()) {
+      newErrors.Description = 'Please enter a description'
+      valid = false
+    }
+
+    if (!category) {
+      newErrors.Category = 'Please select a category'
+      valid = false
+    }
+
+    if (!requestedby) {
+      newErrors.Requested_By = 'Please select the customer'
+      valid = false
+    }
+
+    if (!status) {
+      newErrors.Status = 'Please select the status'
+      valid = false
+    }
+
+    if (!comment.trim()) {
+      newErrors.Comment = 'Please enter a comment'
+      valid = false
+    }
+
+    setErrors(newErrors)
+    return valid
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (validateForm()) {
+      window.alert('Validation success...')
+    } else {
+      window.alert('Validation Failed. Fill all the required fields...')
+    }
+  }
+
+  const handleClear = (e) => {
+    e.preventDefault()
+
+    setDescription('')
+    setCategory('')
+    setAddedBy('')
+    setAddedDate('')
+    setRequestedBy('')
+    setAssignedTo('')
+    setProject('')
+    setStatus('')
+    setComment('')
+
+    setErrors({
+      Description: '',
+      Category: '',
+      Requested_By: '',
+      Status: '',
+      Comment: '',
+    })
+  }
+
   return (
     <div>
-      <div>
+      <div className="addtaskpage_container">
         <tabel>
           <form className="addtaskpage_details">
             <tr>
@@ -30,12 +109,17 @@ const AddTaskPage = () => {
                   value={description}
                   onChange={(e) => {
                     setDescription(e.target.value)
+                    setErrors({ ...errors, Description: '' })
                   }}
                 ></textarea>
               </td>
+              {errors.Description && (
+                <p className="error">{errors.Description}</p>
+              )}
             </tr>
             <tr>
               <td>
+                {' '}
                 Catergory
                 <span style={{ color: 'red', fontWeight: 'bold' }}> * </span> :
               </td>
@@ -45,6 +129,7 @@ const AddTaskPage = () => {
                   value={category}
                   onChange={(e) => {
                     setCategory(e.target.value)
+                    setErrors({ ...errors, Category: '' })
                   }}
                 >
                   <option disabled hidden value="">
@@ -55,6 +140,7 @@ const AddTaskPage = () => {
                   <option value="activity">Activity</option>
                 </select>
               </td>
+              {errors.Category && <p className="error">{errors.Category}</p>}
             </tr>
             <tr>
               <td>AddedBy :</td>
@@ -96,6 +182,7 @@ const AddTaskPage = () => {
                   value={requestedby}
                   onChange={(e) => {
                     setRequestedBy(e.target.value)
+                    setErrors({ ...errors, Requested_By: '' })
                   }}
                 >
                   <option disabled hidden value="">
@@ -107,6 +194,9 @@ const AddTaskPage = () => {
                   <option value="customer_4">Customer 4</option>
                 </select>
               </td>
+              {errors.Requested_By && (
+                <p className="error">{errors.Requested_By}</p>
+              )}
             </tr>
 
             <tr>
@@ -158,6 +248,7 @@ const AddTaskPage = () => {
                   value={status}
                   onChange={(e) => {
                     setStatus(e.target.value)
+                    setErrors({ ...errors, Status: '' })
                   }}
                 >
                   <option disabled hidden value="">
@@ -171,6 +262,7 @@ const AddTaskPage = () => {
                   <option value="done">Done</option>
                 </select>
               </td>
+              {errors.Status && <p className="error">{errors.Status}</p>}
             </tr>
 
             <tr>
@@ -186,15 +278,21 @@ const AddTaskPage = () => {
                   value={comment}
                   onChange={(e) => {
                     setComment(e.target.value)
+                    setErrors({ ...errors, Comment: '' })
                   }}
                 ></textarea>
               </td>
+              {errors.Comment && <p className="error">{errors.Comment}</p>}
             </tr>
             <tr>
               <td></td>
               <td className="button-class">
-                <button type="button">Clear</button>
-                <button type="submit">Save</button>
+                <button type="button" onClick={handleClear}>
+                  Clear
+                </button>
+                <button type="submit" onClick={handleSubmit}>
+                  Save
+                </button>
               </td>
             </tr>
           </form>
