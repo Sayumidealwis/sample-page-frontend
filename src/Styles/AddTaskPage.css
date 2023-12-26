@@ -1,0 +1,45 @@
+.addtaskpage_container {
+  padding: 0.5vh;
+  margin-left: 28vw;
+  margin-top: 2vh;
+}
+
+.addtaskpage_details {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+td {
+  padding: 1vh;
+}
+
+select,
+textarea,
+input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: white;
+  font-size: 16px;
+}
+
+.error {
+  color: red;
+  opacity: 0.5;
+}
+
+.button-class {
+  text-align: right;
+}
+
+.button-class button {
+  margin-left: 0.5vw;
+  padding: 0.5vw 1vw;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #000080;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}

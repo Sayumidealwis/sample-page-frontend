@@ -1,0 +1,79 @@
+.sidebar_container {
+    width: 17vw;
+    height: 100vh;
+    background-color: steelblue;
+    position: fixed;
+    left: 0;
+    margin-top: 10vh;
+  }
+  
+  .mid_section {
+    padding: 20px;
+  }
+  
+  .user_profile{
+    height: 11vh;
+    align-items: center;
+    display: flex;
+  }
+  
+  .user{
+    color: white;
+    text-align: center;
+    line-height: 1;
+    margin-top: 4vh;
+    font-size: 20px;
+  }
+  
+  .user p{
+    margin-bottom: 2vh;
+  }
+  
+  .user_profile img{
+    margin-top: 11vh;
+    margin-left: 3.7vw;
+    margin-bottom: 10vh;
+    width: 7vw;
+    height: 11.5vh;
+    border-radius: 50%;
+  }
+  
+  .link{
+    text-decoration: none;
+    color: white;
+    line-height: 3;
+    font-size: 25px;
+  }
+  
+  .link:hover{
+    color: black;
+    transition: 0.4;
+  }
+  
+  .link_text{
+    padding: 0;
+    margin: 0;
+    width: 14vw;
+    left: 0;
+    text-align: center;
+    border-radius: 15px 15px 15px 15px;
+  }
+  
+  .logout{
+    margin-left: 2vw;
+    padding: 10px 55px;
+    margin-top: 12vh;
+    background-color: white;
+    border: red;
+    border-radius: 15px 15px 15px 15px;
+    color: red;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .logout:hover{
+    cursor: pointer;
+    background: red;
+    color: white;
+    transition: background-color 1s;
+  }
