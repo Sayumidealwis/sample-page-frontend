@@ -1,8 +1,46 @@
 import React from 'react'
-import Header from '../Components/Header'
 import '../Styles/EditTaskPage.css'
+import Header from '../Components/Header'
+import { useState } from 'react'
 
-export default function EditTaskPage() {
+const EditTaskPage = () => {
+  const [assignedto, setAssignedTo] = useState('')
+  const [status, setStatus] = useState('')
+  const [comment, setComment] = useState('')
+
+  const [errors, setErrors] = useState({
+    Comment: '',
+  })
+
+  const validateForm = () => {
+    let valid = true
+    const newErrors = {
+      Comment: '',
+    }
+
+    if (!comment.trim()) {
+      newErrors.Comment = 'Please enter a comment'
+      valid = false
+    }
+
+    setErrors(newErrors)
+    return valid
+  }
+
+  const handlesubmit = (e) => {
+    e.preventDefault()
+
+    if (validateForm()) {
+      window.alert('Successfully saved...')
+      setComment('')
+      setErrors({
+        Comment: '',
+      })
+    } else {
+      window.alert('Save unsuccess. Give a comment...')
+    }
+  }
+
   return (
     <div>
       <Header currentPage="Edit Task" />
@@ -39,7 +77,11 @@ export default function EditTaskPage() {
           <br />
 
           <label className="form-label">Assigned To:</label>
-          <select>
+          <select
+            name="assignedto"
+            value={assignedto}
+            onChange={(e) => setAssignedTo(e.target.value)}
+          >
             <option>option 1</option>
             <option>option 2</option>
           </select>
@@ -47,7 +89,13 @@ export default function EditTaskPage() {
           <br />
 
           <label className="form-label">Status:</label>
-          <select>
+          <select
+            name="status"
+            value={status}
+            onChange={(e) => {
+              setStatus(e.target.value)
+            }}
+          >
             <option>option 1</option>
             <option>option 2</option>
           </select>
@@ -56,20 +104,27 @@ export default function EditTaskPage() {
 
           <label className="form-label">Comment:</label>
           <textarea
-            name="comment" rows={10} cols={30}>
-
-          </textarea>
+            name="comment"
+            rows={10}
+            cols={30}
+            value={comment}
+            onChange={(e) => {
+              setComment(e.target.value)
+              setErrors({ ...errors, Comment: '' })
+            }}
+          ></textarea>
 
           <br />
+          {errors.Comment && <p className="error">{errors.Comment}</p>}
           <br />
 
-          <button className="form-button" type="submit">
+          <button className="form-button" type="submit" onClick={handlesubmit}>
             Save
           </button>
         </form>
       </div>
     </div>
-    
   )
 }
 
+export default EditTaskPage
