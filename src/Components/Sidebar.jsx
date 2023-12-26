@@ -11,7 +11,7 @@ const Sidebar = () => {
 
     {
       path: '/tasklist',
-      name: 'List Task Page',
+      name: 'Task List Page',
     },
 
     /*{
@@ -34,26 +34,30 @@ const Sidebar = () => {
       name: 'History Task Page',
     },
   ]
+
   return (
-    <div>
-      <div>
-        <img src="" alt="" />
-      </div>
-      <div>
-        <p>
-          UserName
-          <br />
-          Admin
-        </p>
-        <hr />
-      </div>
-      <div>
+    <div className="sidebar_container">
+      <div className="mid_section">
+        <div className="user_profile">
+          <img
+            src="https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg"
+            alt="cardImage"
+          />
+        </div>
+        <div className="user">
+          <p>
+            Sayumi De Alwis
+            <br />
+            Admin
+          </p>
+          <hr />
+        </div>
         {menuItems.map((items, index) => (
-          <Link to={items.path} key={index}>
-            <div>{items.name}</div>
+          <Link to={items.path} key={index} className="link">
+            <div className="link_text">{items.name}</div>
           </Link>
         ))}
-        <button>LogOut</button>
+        <button className="logout">LogOut</button>
       </div>
     </div>
   )
