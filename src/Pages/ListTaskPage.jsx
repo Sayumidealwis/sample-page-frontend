@@ -2,6 +2,7 @@ import React from 'react'
 import '../Styles/ListTaskPage.css'
 import DataTable from 'react-data-table-component'
 import { useState } from 'react'
+import Header from '../Components/Header'
 
 const getColor = (status) => {
   switch (status.toLowerCase()) {
@@ -191,6 +192,7 @@ const ListTaskPage = () => {
 
   return (
     <div>
+      <Header currentPage="List Task"/>
       <div className="container">
         <div>
           <div>
