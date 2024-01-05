@@ -1,6 +1,7 @@
 import React from 'react'
 import '../Styles/ListTaskPage.css'
 import DataTable from 'react-data-table-component'
+import { useState } from 'react'
 
 const getColor = (status) => {
   switch (status.toLowerCase()) {
@@ -159,11 +160,27 @@ const data = [
 ]
 
 const ListTaskPage = () => {
+
+  const [records, setRecords] = useState(data)
+
+  function handleFilter(event) {
+    const Newdata = data.filter((row) => {
+      return row.addedDate
+        .toLowerCase()
+        .includes(event.target.value.toLowerCase())
+    })
+    setRecords(Newdata)
+  }
+
   return (
     <div>
       <DataTable
         columns={column}
-        data={data}
+        data={records}
+        pagination
+        paginationPerPage={5}
+        highlightOnHover
+        pointerOnHover
       />
     </div>
   )  
