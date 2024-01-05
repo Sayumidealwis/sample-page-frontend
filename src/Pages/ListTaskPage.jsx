@@ -172,16 +172,47 @@ const ListTaskPage = () => {
     setRecords(Newdata)
   }
 
+  const customStyles = {
+    headCells: {
+      style: {
+        backgroundColor: 'black',
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: '16px',
+        textAlign: 'center',
+      },
+    },
+    cells: {
+      style: {
+        fontSize: '14px',
+      },
+    },
+  }
+
   return (
     <div>
-      <DataTable
-        columns={column}
-        data={records}
-        pagination
-        paginationPerPage={5}
-        highlightOnHover
-        pointerOnHover
-      />
+      <div className="container">
+        <div>
+          <div>
+            {/* <p className="title">Task List</p> */}
+            <p className="search-bar">
+              Filter By Added Date:{' '}
+              <input className="search" type="text" onChange={handleFilter} />
+            </p>
+          </div>
+        </div>
+        <div className="dataTable">
+          <DataTable
+            columns={column}
+            data={records}
+            pagination
+            paginationPerPage={5}
+            highlightOnHover
+            pointerOnHover
+            customStyles={customStyles}
+          />
+        </div>
+      </div>
     </div>
   )  
 }
