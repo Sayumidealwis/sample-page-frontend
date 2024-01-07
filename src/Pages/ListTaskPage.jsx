@@ -3,6 +3,7 @@ import '../Styles/ListTaskPage.css'
 import DataTable from 'react-data-table-component'
 import { useState } from 'react'
 import Header from '../Components/Header'
+import { useNavigate } from 'react-router-dom'
 
 const getColor = (status) => {
   switch (status.toLowerCase()) {
@@ -161,8 +162,8 @@ const data = [
 ]
 
 const ListTaskPage = () => {
-
   const [records, setRecords] = useState(data)
+  const navigate = useNavigate()
 
   function handleFilter(event) {
     const Newdata = data.filter((row) => {
@@ -192,7 +193,7 @@ const ListTaskPage = () => {
 
   return (
     <div>
-      <Header currentPage="List Task"/>
+      <Header currentPage="List Task" />
       <div className="container">
         <div>
           <div>
@@ -212,11 +213,15 @@ const ListTaskPage = () => {
             highlightOnHover
             pointerOnHover
             customStyles={customStyles}
+            onRowClicked={(row) => {
+              const taskid = row.id
+              navigate(`/taskview/:${taskid}`)
+            }}
           />
         </div>
       </div>
     </div>
-  )  
+  )
 }
 
 export default ListTaskPage
